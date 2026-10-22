@@ -1,0 +1,87 @@
+/** 模拟题 D 组：第 1~4 章补充题库（依据考纲自编，答案已校验） */
+
+const m = (o) => ({ real: false, difficulty: 2, ...o })
+
+export const mockD = [
+  /* ---------------- 第 1 章 计算机组成 ---------------- */
+  m({ id: 'md-01-01', chapterId: 'ch01', sectionId: 'ch01-1', stem: '8 位原码中，−0 的表示是（　）。', options: ['00000000', '10000000', '11111111', '00000001'], answer: 1, analysis: '原码用最高位表示符号、其余位表示绝对值，−0 记为 10000000，与 +0（00000000）不同，因此原码的零不唯一。' }),
+  m({ id: 'md-01-02', chapterId: 'ch01', sectionId: 'ch01-1', stem: '16 位无符号整数的表示范围是（　）。', options: ['0 ~ 65535', '0 ~ 65536', '−32768 ~ 32767', '0 ~ 32767'], answer: 0, analysis: '16 位无符号数共 2¹⁶ = 65536 个编码，从 0 到 65535。−32768~32767 是 16 位补码的范围。' }),
+  m({ id: 'md-01-03', chapterId: 'ch01', sectionId: 'ch01-1', stem: '二进制数 1101 对应的十进制数是（　）。', options: ['11', '13', '14', '15'], answer: 1, analysis: '按权展开：1×2³ + 1×2² + 0×2¹ + 1×2⁰ = 8 + 4 + 0 + 1 = 13。' }),
+  m({ id: 'md-01-04', chapterId: 'ch01', sectionId: 'ch01-1', stem: '浮点数加减运算的第一步是（　）。', options: ['尾数相加', '规格化', '对阶', '舍入'], answer: 2, analysis: '浮点运算顺序为：对阶 → 尾数运算 → 规格化 → 舍入。对阶时小阶向大阶看齐，通过尾数右移实现。' }),
+  m({ id: 'md-01-05', chapterId: 'ch01', sectionId: 'ch01-2', stem: '设信息位 m=8，采用海明码纠错，所需校验位 r 至少为（　）。', options: ['3', '4', '5', '8'], answer: 1, analysis: '2^r ≥ m+r+1：r=3 时 8 < 12；r=4 时 16 ≥ 13，故至少 4 位。' }),
+  m({ id: 'md-01-06', chapterId: 'ch01', sectionId: 'ch01-2', stem: 'CRC 校验中，若生成多项式为 x⁴+x+1，则校验位位数为（　）。', options: ['3', '4', '5', '6'], answer: 1, analysis: '校验位位数等于生成多项式的最高次幂，此处为 4。对应二进制串为 10011，共 5 位。' }),
+  m({ id: 'md-01-07', chapterId: 'ch01', sectionId: 'ch01-2', stem: '偶校验编码中，若信息位中已有 3 个 1，则校验位应取（　）。', options: ['0', '1', '与原信息位相同', '任意'], answer: 1, analysis: '偶校验要求编码后 1 的个数为偶数。已有 3 个 1（奇数），校验位取 1 后共 4 个 1，满足偶校验。' }),
+  m({ id: 'md-01-08', chapterId: 'ch01', sectionId: 'ch01-3', stem: '指令寄存器 IR 的作用是（　）。', options: ['存放下一条指令的地址', '存放当前正在执行的指令', '对操作码进行译码', '提供时序控制信号'], answer: 1, analysis: 'IR 存放当前正在执行的指令本身；存放地址的是程序计数器 PC；译码由指令译码器 ID 完成。' }),
+  m({ id: 'md-01-09', chapterId: 'ch01', sectionId: 'ch01-3', stem: '某流水线由 4 段组成，每段耗时 2ns，执行 50 条指令所需时间为（　）。', options: ['100ns', '106ns', '200ns', '400ns'], answer: 1, analysis: 'T = (4 + 50 − 1) × 2 = 53 × 2 = 106ns。前 4 段填满后每 2ns 出一条指令。' }),
+  m({ id: 'md-01-10', chapterId: 'ch01', sectionId: 'ch01-3', stem: '流水线的吞吐率是指（　）。', options: ['单位时间内完成的指令数', '一条指令所需的时钟周期数', '流水线的段数', '主频与 CPI 的乘积'], answer: 0, analysis: '吞吐率 TP = 指令条数 / 总时间，单位为条/秒或条/ns，反映流水线单位时间的产出。' }),
+  m({ id: 'md-01-11', chapterId: 'ch01', sectionId: 'ch01-4', stem: 'Cache 采用写回策略时，需要为每个 Cache 行增设（　）。', options: ['有效位', '脏位', '标记位', '替换位'], answer: 1, analysis: '写回策略只在 Cache 中修改，替换时才写回主存，因此需要“脏位”标记该行是否被修改过。' }),
+  m({ id: 'md-01-12', chapterId: 'ch01', sectionId: 'ch01-4', stem: '某计算机有 24 根地址线，按字节编址，其最大寻址空间为（　）。', options: ['8MB', '16MB', '32MB', '64MB'], answer: 1, analysis: '2²⁴ 个字节 = 16MB。' }),
+  m({ id: 'md-01-13', chapterId: 'ch01', sectionId: 'ch01-4', stem: '直接映射方式的主要缺点是（　）。', options: ['硬件实现复杂', '冲突率高，Cache 命中率低', '无法进行地址转换', '需要额外的标记存储器'], answer: 1, analysis: '直接映射中每个主存块只能放到固定行，多个块竞争同一行会造成频繁替换，冲突率高。' }),
+  m({ id: 'md-01-14', chapterId: 'ch01', sectionId: 'ch01-4', stem: '某磁盘转速 12000RPM，其平均旋转延迟约为（　）。', options: ['2.5ms', '5ms', '1.25ms', '10ms'], answer: 0, analysis: '转一圈时间 = 60/12000 s = 5ms，平均旋转延迟取半圈 = 2.5ms。' }),
+  m({ id: 'md-01-15', chapterId: 'ch01', sectionId: 'ch01-5', stem: '地址总线的作用是（　）。', options: ['传输数据', '传输地址，且为单向', '传输控制信号', '连接电源'], answer: 1, analysis: '地址总线由 CPU 单向输出地址，位数决定可寻址空间；数据总线双向；控制总线双向。' }),
+  m({ id: 'md-01-16', chapterId: 'ch01', sectionId: 'ch01-5', stem: '中断发生时，程序断点地址通常保存在（　）。', options: ['通用寄存器', '堆栈', '指令寄存器', '状态寄存器'], answer: 1, analysis: '中断响应时把断点（PC 值）与现场信息压入堆栈，中断返回时再弹出恢复执行。' }),
+  m({ id: 'md-01-17', chapterId: 'ch01', sectionId: 'ch01-6', stem: '两个可靠性均为 0.9 的部件串联，系统可靠性为（　）。', options: ['0.9', '0.81', '0.99', '1.8'], answer: 1, analysis: '串联系统可靠性 = R₁ × R₂ = 0.9 × 0.9 = 0.81。串联越多可靠性越低。' }),
+  m({ id: 'md-01-18', chapterId: 'ch01', sectionId: 'ch01-6', stem: '某 CPU 主频 1GHz，平均 CPI 为 2，则其 MIPS 为（　）。', options: ['200', '500', '1000', '2000'], answer: 1, analysis: 'MIPS = 10⁹ / (2×10⁶) = 500。' }),
+
+  /* ---------------- 第 2 章 操作系统 ---------------- */
+  m({ id: 'md-02-01', chapterId: 'ch02', sectionId: 'ch02-2', stem: '进程存在的唯一标志是（　）。', options: ['程序段', '数据段', '进程控制块 PCB', '堆栈'], answer: 2, analysis: 'PCB 记录进程标识、状态、资源等信息，操作系统通过 PCB 感知和管理进程，是进程存在的唯一标志。' }),
+  m({ id: 'md-02-02', chapterId: 'ch02', sectionId: 'ch02-2', stem: '“时间片用完”会导致进程（　）。', options: ['由运行态转为就绪态', '由运行态转为阻塞态', '由就绪态转为运行态', '由阻塞态转为就绪态'], answer: 0, analysis: '时间片用完属于剥夺 CPU，进程仍可运行，因此回到就绪队列等待下次调度。' }),
+  m({ id: 'md-02-03', chapterId: 'ch02', sectionId: 'ch02-2', stem: '同一进程内的多个线程共享（　）。', options: ['栈指针', '程序计数器', '地址空间与打开的文件', '寄存器组'], answer: 2, analysis: '线程共享进程的地址空间、全局变量、打开文件等资源，但各自拥有独立的栈、PC 和寄存器。' }),
+  m({ id: 'md-02-04', chapterId: 'ch02', sectionId: 'ch02-3', stem: '用于实现进程同步的信号量，其初值通常为（　）。', options: ['0', '1', 'n', '任意负数'], answer: 0, analysis: '同步信号量表示“某事件是否已发生”，初值 0 表示尚未发生，先 V 后 P 实现先后约束。' }),
+  m({ id: 'md-02-05', chapterId: 'ch02', sectionId: 'ch02-3', stem: '临界区是指（　）。', options: ['一段共享内存', '进程中访问临界资源的那段代码', '一种硬件设备', '进程的控制块'], answer: 1, analysis: '临界资源是一次仅允许一个进程使用的资源；访问它的那段**代码**称为临界区。' }),
+  m({ id: 'md-02-06', chapterId: 'ch02', sectionId: 'ch02-4', stem: '采用资源有序分配法可以破坏死锁的（　）条件。', options: ['互斥', '请求与保持', '不可剥夺', '环路等待'], answer: 3, analysis: '给资源编号并要求按序申请，使循环等待链无法形成，破坏的是环路等待条件。' }),
+  m({ id: 'md-02-07', chapterId: 'ch02', sectionId: 'ch02-4', stem: '银行家算法属于死锁处理策略中的（　）。', options: ['死锁预防', '死锁避免', '死锁检测', '死锁解除'], answer: 1, analysis: '银行家算法在分配前判断系统是否仍处于安全状态，属于动态的**死锁避免**。' }),
+  m({ id: 'md-02-08', chapterId: 'ch02', sectionId: 'ch02-5', stem: '页式存储管理中，访问的页不在内存时会产生（　）。', options: ['地址越界中断', '缺页中断', '除零中断', '时钟中断'], answer: 1, analysis: '页表状态位表明该页不在内存，硬件产生缺页中断，由操作系统从辅存调入后再继续执行。' }),
+  m({ id: 'md-02-09', chapterId: 'ch02', sectionId: 'ch02-5', stem: '段式存储管理便于实现（　）。', options: ['内存紧凑分配', '段的共享与保护', '消除外部碎片', '地址自动重定位'], answer: 1, analysis: '段按逻辑意义划分（代码段、数据段），便于按段共享和设置访问权限，但会产生外部碎片。' }),
+  m({ id: 'md-02-10', chapterId: 'ch02', sectionId: 'ch02-5', stem: '下列页面置换算法中，理论上缺页率最低但无法实现的是（　）。', options: ['FIFO', 'LRU', 'OPT', 'LFU'], answer: 2, analysis: 'OPT 需要预知未来访问序列，无法真正实现，通常作为衡量其他算法优劣的下界。' }),
+  m({ id: 'md-02-11', chapterId: 'ch02', sectionId: 'ch02-5', stem: '页面大小为 8KB 时，页内偏移量占（　）位。', options: ['11', '12', '13', '14'], answer: 2, analysis: '8KB = 2¹³，故页内偏移占 13 位。' }),
+  m({ id: 'md-02-12', chapterId: 'ch02', sectionId: 'ch02-6', stem: '文件系统采用索引结构的主要优点是（　）。', options: ['只能顺序访问', '支持随机访问且便于文件增长', '不需要索引块', '存储空间利用率最高'], answer: 1, analysis: '索引表记录各逻辑块的物理地址，既支持随机访问，也便于文件动态增长；代价是索引块占用额外空间。' }),
+  m({ id: 'md-02-13', chapterId: 'ch02', sectionId: 'ch02-6', stem: '位示图中字长为 32 位，块号从 0 开始，则块号 100 对应的字号和位号分别是（　）。', options: ['3 和 4', '4 和 3', '3 和 3', '100 和 0'], answer: 0, analysis: '字号 = 100 ÷ 32 = 3，位号 = 100 mod 32 = 4。' }),
+  m({ id: 'md-02-14', chapterId: 'ch02', sectionId: 'ch02-7', stem: 'SCAN 磁盘调度算法又称为（　）。', options: ['电梯算法', '最短寻道优先', '先来先服务', '循环扫描'], answer: 0, analysis: 'SCAN 沿一个方向扫描到端点再折返，类似电梯运行，故称电梯算法。' }),
+  m({ id: 'md-02-15', chapterId: 'ch02', sectionId: 'ch02-7', stem: 'SPOOLing 技术中的“井”是指（　）。', options: ['磁盘上的缓冲区', '内存中的栈', '打印机', '输入设备'], answer: 0, analysis: 'SPOOLing 在磁盘上开辟输入井和输出井作为缓冲，用共享设备模拟独占设备。' }),
+  m({ id: 'md-02-16', chapterId: 'ch02', sectionId: 'ch02-2', stem: '某作业 8:00 提交，9:30 完成，运行时间为 60 分钟，其周转时间为（　）。', options: ['60 分钟', '90 分钟', '30 分钟', '150 分钟'], answer: 1, analysis: '周转时间 = 完成时间 − 提交时间 = 90 分钟。带权周转时间 = 90/60 = 1.5。' }),
+  m({ id: 'md-02-17', chapterId: 'ch02', sectionId: 'ch02-2', stem: '多级反馈队列调度算法的主要优点是（　）。', options: ['实现最简单', '兼顾响应时间与系统吞吐量', '完全避免饥饿', '不需要时间片'], answer: 1, analysis: '多级反馈队列通过多个优先级队列与动态时间片，兼顾短作业响应与长作业推进，是通用性较强的调度算法。' }),
+  m({ id: 'md-02-18', chapterId: 'ch02', sectionId: 'ch02-5', stem: '虚拟存储系统中，地址变换由（　）完成。', options: ['编译程序', '操作系统与硬件共同完成', '仅由应用程序完成', '仅由数据库管理系统完成'], answer: 1, analysis: '地址变换依赖硬件（MMU、页表基址寄存器）完成查表，缺页处理与页面调度由操作系统负责。' }),
+
+  /* ---------------- 第 3 章 数据库系统 ---------------- */
+  m({ id: 'md-03-01', chapterId: 'ch03', sectionId: 'ch03-1', stem: '数据库的外模式对应于（　）。', options: ['基本表', '视图', '存储文件', '索引'], answer: 1, analysis: '外模式是用户看到的数据视图，通常用视图（View）实现；基本表对应概念模式，存储文件对应内模式。' }),
+  m({ id: 'md-03-02', chapterId: 'ch03', sectionId: 'ch03-1', stem: '当数据库的存储结构改变时，通过调整（　）保证应用程序不变。', options: ['外模式/模式映像', '模式/内模式映像', '外模式/内模式映像', '用户模式'], answer: 1, analysis: '模式/内模式映像保证物理独立性；外模式/模式映像保证逻辑独立性。' }),
+  m({ id: 'md-03-03', chapterId: 'ch03', sectionId: 'ch03-2', stem: 'E-R 图中，用菱形表示（　）。', options: ['实体', '属性', '联系', '主键'], answer: 2, analysis: '矩形表示实体，椭圆表示属性，菱形表示联系，菱形之间的连线标注 1:1、1:n 或 m:n。' }),
+  m({ id: 'md-03-04', chapterId: 'ch03', sectionId: 'ch03-3', stem: '关系代数中，从 R 中取出满足条件的行，应使用（　）。', options: ['投影', '选择', '并', '除'], answer: 1, analysis: '选择 σ 按条件筛选**行**；投影 π 按属性筛选**列**。' }),
+  m({ id: 'md-03-05', chapterId: 'ch03', sectionId: 'ch03-3', stem: '关系 R(A,B,C) 与 S(B,C,D) 进行自然连接，结果的属性个数为（　）。', options: ['3', '4', '5', '6'], answer: 1, analysis: '自然连接去掉重复的同名属性 B、C，结果为 A、B、C、D 共 4 个属性。' }),
+  m({ id: 'md-03-06', chapterId: 'ch03', sectionId: 'ch03-4', stem: '统计表中记录个数，应使用（　）。', options: ['SUM(*)', 'COUNT(*)', 'AVG(*)', 'MAX(*)'], answer: 1, analysis: 'COUNT(*) 统计元组个数（含含 NULL 的行）；COUNT(列名) 只统计该列非 NULL 的个数。' }),
+  m({ id: 'md-03-07', chapterId: 'ch03', sectionId: 'ch03-4', stem: '要保留左表全部记录、右表无匹配时填 NULL，应使用（　）。', options: ['INNER JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'CROSS JOIN'], answer: 1, analysis: 'LEFT JOIN（左外连接）保留左表所有行；INNER JOIN 只保留匹配行；CROSS JOIN 为笛卡尔积。' }),
+  m({ id: 'md-03-08', chapterId: 'ch03', sectionId: 'ch03-4', stem: '使用视图不能实现（　）。', options: ['简化复杂查询', '提高逻辑独立性', '限制用户可见的数据列', '自动提高查询的物理存取速度'], answer: 3, analysis: '视图是虚表，不存储数据，不会自动提升物理存取速度；其价值在于简化、安全与逻辑独立性。' }),
+  m({ id: 'md-03-09', chapterId: 'ch03', sectionId: 'ch03-5', stem: '关系 R(A,B,C)，F={A→B, B→C}，则 R 的候选键是（　）。', options: ['A', 'B', 'C', 'AB'], answer: 0, analysis: 'A 只出现在依赖左边，A⁺ = ABC（A→B→C），故 A 为候选键。' }),
+  m({ id: 'md-03-10', chapterId: 'ch03', sectionId: 'ch03-5', stem: '若关系模式中所有非主属性都完全依赖于候选键，则该模式至少满足（　）。', options: ['1NF', '2NF', '3NF', 'BCNF'], answer: 1, analysis: '消除非主属性对候选键的部分函数依赖，即达到 2NF。' }),
+  m({ id: 'md-03-11', chapterId: 'ch03', sectionId: 'ch03-5', stem: 'BCNF 要求每个函数依赖 X→Y 中的 X 都（　）。', options: ['是候选键', '是主属性', '不含空值', '只有一个属性'], answer: 0, analysis: 'BCNF 在 3NF 基础上进一步要求所有非平凡函数依赖的决定因素都包含候选键。' }),
+  m({ id: 'md-03-12', chapterId: 'ch03', sectionId: 'ch03-5', stem: '关于模式分解，下列说法正确的是（　）。', options: ['3NF 分解一定能同时做到无损连接和保持函数依赖', 'BCNF 分解一定保持函数依赖', '无损连接指分解后属性个数不变', '分解越细越好'], answer: 0, analysis: '3NF 分解可同时满足无损连接与保持函数依赖；BCNF 分解保证无损连接，但不一定保持函数依赖。' }),
+  m({ id: 'md-03-13', chapterId: 'ch03', sectionId: 'ch03-6', stem: '事务的原子性主要通过（　）保证。', options: ['日志与回滚（UNDO）', '封锁协议', '索引', '视图'], answer: 0, analysis: '原子性要求全做或全不做，故障时依据日志执行 UNDO 撤销未完成事务的影响。' }),
+  m({ id: 'md-03-14', chapterId: 'ch03', sectionId: 'ch03-6', stem: '读到其他事务尚未提交的修改，属于（　）。', options: ['丢失更新', '脏读', '不可重复读', '幻读'], answer: 1, analysis: '脏读是读到了未提交的数据；若对方回滚，读到的数据就是无效的。' }),
+  m({ id: 'md-03-15', chapterId: 'ch03', sectionId: 'ch03-6', stem: '一级封锁协议能解决的问题是（　）。', options: ['丢失更新', '脏读', '不可重复读', '幻读'], answer: 0, analysis: '一级封锁协议要求修改前加 X 锁并持有到事务结束，可防止丢失更新，但不能防止脏读。' }),
+  m({ id: 'md-03-16', chapterId: 'ch03', sectionId: 'ch03-6', stem: '两段锁协议（2PL）是可串行化的（　）。', options: ['必要条件', '充分条件', '充要条件', '无关条件'], answer: 1, analysis: '遵守 2PL 一定可串行化，因此是充分条件；但可串行化的调度不一定遵守 2PL。' }),
+  m({ id: 'md-03-17', chapterId: 'ch03', sectionId: 'ch03-7', stem: '数据仓库中，用于多维分析的典型操作不包括（　）。', options: ['切片', '切块', '旋转', '回滚'], answer: 3, analysis: 'OLAP 的典型操作是上卷（roll-up）、下钻（drill-down）、切片、切块、旋转；回滚是事务操作。' }),
+  m({ id: 'md-03-18', chapterId: 'ch03', sectionId: 'ch03-7', stem: '分布式数据库的透明性中，层次最高的是（　）。', options: ['分片透明', '位置透明', '复制透明', '逻辑透明'], answer: 0, analysis: '分片透明使用户无需关心数据如何分片，是最高层次的透明性；逻辑透明层次最低。' }),
+
+  /* ---------------- 第 4 章 计算机网络 ---------------- */
+  m({ id: 'md-04-01', chapterId: 'ch04', sectionId: 'ch04-1', stem: 'OSI 参考模型中，负责数据格式转换与加密的是（　）。', options: ['应用层', '表示层', '会话层', '传输层'], answer: 1, analysis: '表示层处理数据的表示形式，包括格式转换、加密解密与压缩；会话层管理会话的建立与终止。' }),
+  m({ id: 'md-04-02', chapterId: 'ch04', sectionId: 'ch04-1', stem: '下列协议中，工作在网络层（网际层）的是（　）。', options: ['TCP', 'UDP', 'ICMP', 'HTTP'], answer: 2, analysis: 'ICMP 与 IP 同属网际层；TCP、UDP 属传输层；HTTP 属应用层。' }),
+  m({ id: 'md-04-03', chapterId: 'ch04', sectionId: 'ch04-2', stem: '地址 192.168.1.100/27 所在子网的可用主机地址数为（　）。', options: ['14', '30', '32', '62'], answer: 1, analysis: '/27 主机位 5 位，可用主机数 2⁵−2 = 30。' }),
+  m({ id: 'md-04-04', chapterId: 'ch04', sectionId: 'ch04-2', stem: '地址 10.10.10.200/28 所在子网的网络地址是（　）。', options: ['10.10.10.192', '10.10.10.0', '10.10.10.208', '10.10.10.200'], answer: 0, analysis: '/28 块大小 16，边界为 192、208…，200 落在 192~207，网络地址 10.10.10.192。' }),
+  m({ id: 'md-04-05', chapterId: 'ch04', sectionId: 'ch04-2', stem: '下列地址中属于 A 类私有地址的是（　）。', options: ['10.1.2.3', '172.16.1.1', '192.168.1.1', '127.0.0.1'], answer: 0, analysis: 'A 类私有地址段为 10.0.0.0/8；172.16/12 属 B 类私有段；192.168/16 属 C 类私有段；127 为回环地址。' }),
+  m({ id: 'md-04-06', chapterId: 'ch04', sectionId: 'ch04-2', stem: 'IPv4 中，127.0.0.1 的作用是（　）。', options: ['广播地址', '本机回环测试', '默认网关', '组播地址'], answer: 1, analysis: '127.0.0.0/8 为回环地址，用于本机协议栈测试，数据不出网卡。' }),
+  m({ id: 'md-04-07', chapterId: 'ch04', sectionId: 'ch04-3', stem: 'UDP 协议的特点是（　）。', options: ['面向连接、可靠传输', '无连接、不可靠但开销小', '提供流量控制', '提供拥塞控制'], answer: 1, analysis: 'UDP 无连接、不保证可靠与有序，首部仅 8 字节，适合 DNS、视频等对时延敏感的场景。' }),
+  m({ id: 'md-04-08', chapterId: 'ch04', sectionId: 'ch04-3', stem: 'TCP 释放连接需要（　）次挥手。', options: ['2', '3', '4', '5'], answer: 2, analysis: 'TCP 是全双工，两个方向需分别关闭，因此需要四次挥手（FIN、ACK、FIN、ACK）。' }),
+  m({ id: 'md-04-09', chapterId: 'ch04', sectionId: 'ch04-3', stem: 'FTP 协议控制连接使用的默认端口是（　）。', options: ['20', '21', '22', '23'], answer: 1, analysis: 'FTP 用 21 端口传控制命令，20 端口传数据；22 是 SSH，23 是 Telnet。' }),
+  m({ id: 'md-04-10', chapterId: 'ch04', sectionId: 'ch04-3', stem: 'SMTP 协议默认使用的端口号是（　）。', options: ['25', '53', '110', '143'], answer: 0, analysis: 'SMTP 用 25 端口发送邮件；110 是 POP3，143 是 IMAP，53 是 DNS。' }),
+  m({ id: 'md-04-11', chapterId: 'ch04', sectionId: 'ch04-4', stem: 'DNS 中用于将域名映射为 IPv4 地址的记录类型是（　）。', options: ['A', 'AAAA', 'CNAME', 'MX'], answer: 0, analysis: 'A 记录存 IPv4 地址，AAAA 存 IPv6，CNAME 为别名，MX 为邮件交换记录。' }),
+  m({ id: 'md-04-12', chapterId: 'ch04', sectionId: 'ch04-4', stem: 'DHCP 客户端使用的端口号是（　）。', options: ['67', '68', '69', '53'], answer: 1, analysis: 'DHCP 服务端使用 67，客户端使用 68，基于 UDP。' }),
+  m({ id: 'md-04-13', chapterId: 'ch04', sectionId: 'ch04-5', stem: '交换机可以隔离（　）。', options: ['广播域', '冲突域', '网段', '路由域'], answer: 1, analysis: '交换机每个端口是独立的冲突域，但默认仍属同一广播域；隔离广播域需要路由器或 VLAN。' }),
+  m({ id: 'md-04-14', chapterId: 'ch04', sectionId: 'ch04-5', stem: '路由器工作在 OSI 模型的（　）。', options: ['物理层', '数据链路层', '网络层', '应用层'], answer: 2, analysis: '路由器根据 IP 地址选路，工作在网络层，可隔离广播域。' }),
+  m({ id: 'md-04-15', chapterId: 'ch04', sectionId: 'ch04-2', stem: '将 172.16.0.0/24 与 172.16.1.0/24 聚合后的地址是（　）。', options: ['172.16.0.0/22', '172.16.0.0/23', '172.16.0.0/24', '172.16.0.0/21'], answer: 1, analysis: '2 个 /24 网段需 1 位区分，前缀 24−1 = 23，起始 172.16.0.0，故为 /23。' }),
+  m({ id: 'md-04-16', chapterId: 'ch04', sectionId: 'ch04-5', stem: 'ping 命令基于（　）协议实现。', options: ['TCP', 'UDP', 'ICMP', 'ARP'], answer: 2, analysis: 'ping 发送 ICMP Echo Request 并等待 Echo Reply，用于测试连通性。' }),
+  m({ id: 'md-04-17', chapterId: 'ch04', sectionId: 'ch04-5', stem: '双绞线以太网的单段最大传输距离通常为（　）。', options: ['50m', '100m', '185m', '500m'], answer: 1, analysis: '双绞线（UTP）单段最大 100m；细同轴电缆约 185m，粗同轴约 500m。' }),
+  m({ id: 'md-04-18', chapterId: 'ch04', sectionId: 'ch04-5', stem: '中心节点故障会导致整个网络瘫痪的拓扑结构是（　）。', options: ['总线型', '星型', '环型', '网状'], answer: 1, analysis: '星型拓扑依赖中心节点（交换机/集线器），中心故障则全网瘫痪；网状可靠性最高但成本高。' })
+]
+
+export default mockD

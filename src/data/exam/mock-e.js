@@ -1,0 +1,85 @@
+/** 模拟题 E 组：第 5~8 章补充题库（依据考纲自编，答案已校验） */
+
+const m = (o) => ({ real: false, difficulty: 2, ...o })
+
+export const mockE = [
+  /* ---------------- 第 5 章 信息安全 ---------------- */
+  m({ id: 'me-05-01', chapterId: 'ch05', sectionId: 'ch05-2', stem: '对称加密体制的主要缺点是（　）。', options: ['加密速度慢', '密钥分发与管理困难', '不能加密大量数据', '无法保证完整性'], answer: 1, analysis: '对称加密速度快、适合大数据量，但通信双方需共享同一密钥，n 个用户需 n(n−1)/2 把密钥，分发管理困难。' }),
+  m({ id: 'me-05-02', chapterId: 'ch05', sectionId: 'ch05-2', stem: 'DES 算法的有效密钥长度是（　）。', options: ['48 位', '56 位', '64 位', '128 位'], answer: 1, analysis: 'DES 分组 64 位，其中 8 位为奇偶校验位，有效密钥 56 位，已不安全。' }),
+  m({ id: 'me-05-03', chapterId: 'ch05', sectionId: 'ch05-2', stem: 'RSA 算法的安全性基础是（　）。', options: ['大整数因子分解困难', '离散对数困难', '椭圆曲线离散对数', '哈希碰撞'], answer: 0, analysis: 'RSA 基于大整数分解难题；DSA、Diffie-Hellman 基于离散对数；ECC 基于椭圆曲线离散对数。' }),
+  m({ id: 'me-05-04', chapterId: 'ch05', sectionId: 'ch05-3', stem: '报文摘要算法不具备（　）特性。', options: ['单向性', '抗碰撞性', '可逆性', '定长输出'], answer: 2, analysis: '摘要算法是单向的，无法从摘要还原原文；正因不可逆才适合做完整性校验与签名。' }),
+  m({ id: 'me-05-05', chapterId: 'ch05', sectionId: 'ch05-3', stem: '数字证书由（　）签发。', options: ['用户本人', 'CA 认证中心', '路由器', '防火墙'], answer: 1, analysis: 'CA（认证中心）用自己的私钥对证书签名，把公钥与持有者身份绑定，供第三方验证。' }),
+  m({ id: 'me-05-06', chapterId: 'ch05', sectionId: 'ch05-3', stem: '验证数字证书真伪时，应使用（　）。', options: ['CA 的公钥', 'CA 的私钥', '用户的公钥', '用户的私钥'], answer: 0, analysis: '证书由 CA 私钥签名，验证时用 CA 公钥解密签名值，比对摘要即可确认证书未被篡改。' }),
+  m({ id: 'me-05-07', chapterId: 'ch05', sectionId: 'ch05-2', stem: 'HTTPS 采用混合加密，其中对称密钥的作用是（　）。', options: ['加密网页数据', '签名服务器证书', '生成摘要', '验证用户身份'], answer: 0, analysis: '握手阶段用非对称加密协商出对称会话密钥，之后用该对称密钥加密应用数据，兼顾安全与性能。' }),
+  m({ id: 'me-05-08', chapterId: 'ch05', sectionId: 'ch05-4', stem: '包过滤防火墙工作于（　）。', options: ['物理层', '网络层', '应用层', '表示层'], answer: 1, analysis: '包过滤防火墙检查源/目的 IP、端口、协议等，工作在网络层（IP 层），速度快但无法识别应用内容。' }),
+  m({ id: 'me-05-09', chapterId: 'ch05', sectionId: 'ch05-4', stem: '防火墙的 DMZ 区通常用于放置（　）。', options: ['核心数据库', '对外提供服务的服务器', '内部办公终端', '备份磁带'], answer: 1, analysis: 'DMZ 是内外网之间的缓冲安全区，放置 Web、邮件等对外服务器，即使被攻破也不直接影响内网。' }),
+  m({ id: 'me-05-10', chapterId: 'ch05', sectionId: 'ch05-5', stem: '引导型病毒主要感染（　）。', options: ['可执行文件', '硬盘引导扇区', 'Word 文档', '网络数据包'], answer: 1, analysis: '引导型病毒寄生在引导扇区，系统启动时即被加载，优先级高于操作系统。' }),
+  m({ id: 'me-05-11', chapterId: 'ch05', sectionId: 'ch05-5', stem: '蠕虫与普通病毒的主要区别是（　）。', options: ['蠕虫需要宿主文件', '蠕虫能自我复制并通过网络传播', '蠕虫只感染引导区', '蠕虫不会占用带宽'], answer: 1, analysis: '蠕虫可独立自我复制并主动通过网络传播，常造成带宽耗尽与服务拒绝；普通病毒需寄生在宿主文件中。' }),
+  m({ id: 'me-05-12', chapterId: 'ch05', sectionId: 'ch05-5', stem: '木马程序的核心特征是（　）。', options: ['自我复制', '伪装并窃取信息或远程控制', '感染引导扇区', '修改注册表'], answer: 1, analysis: '木马伪装成正常程序诱使用户运行，进而窃取数据或开放后门，通常不自我复制。' }),
+  m({ id: 'me-05-13', chapterId: 'ch05', sectionId: 'ch05-5', stem: '按照安全标签强制授权的访问控制模型是（　）。', options: ['DAC', 'MAC', 'RBAC', 'ACL'], answer: 1, analysis: 'MAC（强制访问控制）由系统按主体与客体的安全标签强制决定访问，用户不能自行授权。' }),
+  m({ id: 'me-05-14', chapterId: 'ch05', sectionId: 'ch05-1', stem: '“授权用户能够正常访问系统”体现的是信息的（　）。', options: ['保密性', '完整性', '可用性', '不可否认性'], answer: 2, analysis: '可用性指授权用户需要时可正常访问资源；拒绝服务攻击破坏的正是可用性。' }),
+  m({ id: 'me-05-15', chapterId: 'ch05', sectionId: 'ch05-1', stem: '下列属于主动攻击的是（　）。', options: ['窃听', '流量分析', '篡改数据', '截获报文'], answer: 2, analysis: '篡改会改变数据内容，属于主动攻击；窃听、流量分析、截获只观察不修改，属于被动攻击。' }),
+  m({ id: 'me-05-16', chapterId: 'ch05', sectionId: 'ch05-4', stem: 'IPSec 协议工作在（　）。', options: ['应用层', '传输层', '网络层', '数据链路层'], answer: 2, analysis: 'IPSec 在网络层提供加密与认证（AH/ESP），是构建 VPN 的常用协议。' }),
+  m({ id: 'me-05-17', chapterId: 'ch05', sectionId: 'ch05-4', stem: 'HTTPS 使用的默认端口是（　）。', options: ['80', '443', '8080', '8443'], answer: 1, analysis: 'HTTPS 默认端口 443；HTTP 为 80。' }),
+  m({ id: 'me-05-18', chapterId: 'ch05', sectionId: 'ch05-4', stem: '能够检测并实时阻断入侵行为的设备是（　）。', options: ['IDS', 'IPS', '防火墙', '蜜罐'], answer: 1, analysis: 'IPS（入侵防御系统）串联部署，可检测并阻断；IDS 旁路部署，只告警不阻断。' }),
+
+  /* ---------------- 第 6 章 标准化与知识产权 ---------------- */
+  m({ id: 'me-06-01', chapterId: 'ch06', sectionId: 'ch06-1', stem: '自然人的软件著作权保护期为（　）。', options: ['25 年', '50 年', '作者终生及死亡后 50 年', '永久'], answer: 2, analysis: '自然人软件著作权保护期为作者终生及死亡后 50 年；法人作品为首次发表后 50 年。' }),
+  m({ id: 'me-06-02', chapterId: 'ch06', sectionId: 'ch06-1', stem: '实用新型专利权的保护期限为（　）。', options: ['5 年', '10 年', '15 年', '20 年'], answer: 1, analysis: '实用新型 10 年、发明 20 年、外观设计 15 年，均自申请日起算。' }),
+  m({ id: 'me-06-03', chapterId: 'ch06', sectionId: 'ch06-1', stem: '商标专用权期满可以续展，每次续展的有效期为（　）。', options: ['5 年', '10 年', '15 年', '20 年'], answer: 1, analysis: '商标注册有效期 10 年，期满可续展 10 年，且续展次数不受限制。' }),
+  m({ id: 'me-06-04', chapterId: 'ch06', sectionId: 'ch06-1', stem: '王某利用单位的物质技术条件开发软件，并由单位承担责任，该软件著作权属于（　）。', options: ['王某', '单位', '双方共有', '国家'], answer: 1, analysis: '职务作品中，著作权由单位享有，开发者享有署名权。' }),
+  m({ id: 'me-06-05', chapterId: 'ch06', sectionId: 'ch06-1', stem: '甲乙合作开发软件且无约定，该软件著作权（　）。', options: ['归甲方', '归乙方', '由合作开发者共同享有', '归国家'], answer: 2, analysis: '合作开发且无约定时，著作权由合作开发者共同享有；可分割使用的部分各自单独享有。' }),
+  m({ id: 'me-06-06', chapterId: 'ch06', sectionId: 'ch06-1', stem: '下列行为属于合理使用的是（　）。', options: ['复制他人软件用于销售', '为学习和研究软件内含的设计思想而安装使用', '将软件出租牟利', '删除软件权利管理信息后传播'], answer: 1, analysis: '为学习和研究软件内含的设计思想与原理而安装、显示、传输或存储软件，属于合理使用，可不经许可、不付报酬。' }),
+  m({ id: 'me-06-07', chapterId: 'ch06', sectionId: 'ch06-1', stem: '计算机软件著作权自（　）产生。', options: ['开发完成之日', '登记之日', '发表之日', '销售之日'], answer: 0, analysis: '软件著作权自开发完成之日起自动产生，登记为自愿行为，仅作为权利证明。' }),
+  m({ id: 'me-06-08', chapterId: 'ch06', sectionId: 'ch06-2', stem: '我国国家标准代号中，强制性标准使用（　）。', options: ['GB', 'GB/T', 'SJ', 'Q/'], answer: 0, analysis: 'GB 为强制性国家标准，GB/T 为推荐性国家标准，SJ 为电子行业标准，Q/ 为企业标准。' }),
+  m({ id: 'me-06-09', chapterId: 'ch06', sectionId: 'ch06-2', stem: '国际标准化组织的英文缩写是（　）。', options: ['ISO', 'IEC', 'ITU', 'IEEE'], answer: 0, analysis: 'ISO 是国际标准化组织，IEC 是国际电工委员会，ITU 是国际电信联盟。' }),
+  m({ id: 'me-06-10', chapterId: 'ch06', sectionId: 'ch06-2', stem: '按标准的约束力划分，标准可分为（　）。', options: ['国际标准与国家标准', '强制性标准与推荐性标准', '产品标准与方法标准', '技术标准与管理标准'], answer: 1, analysis: '按约束力分为强制性标准与推荐性标准；按适用范围分为国际、国家、行业、地方、企业标准。' }),
+  m({ id: 'me-06-11', chapterId: 'ch06', sectionId: 'ch06-1', stem: '下列不受著作权法保护的是（　）。', options: ['软件源代码', '软件用户手册', '软件的设计思想', '软件的界面美术作品'], answer: 2, analysis: '著作权保护表达形式，不保护思想、处理过程、操作方法或数学概念本身。' }),
+  m({ id: 'me-06-12', chapterId: 'ch06', sectionId: 'ch06-1', stem: '侵犯软件著作权应承担的法律责任不包括（　）。', options: ['停止侵害', '消除影响', '赔偿损失', '吊销营业执照'], answer: 3, analysis: '民事责任包括停止侵害、消除影响、赔礼道歉、赔偿损失；吊销营业执照属于行政处罚，需由行政机关依法作出。' }),
+  m({ id: 'me-06-13', chapterId: 'ch06', sectionId: 'ch06-1', stem: '两个申请人就同样的发明创造申请专利，专利权授予（　）。', options: ['先发明的人', '先申请的人', '先使用的人', '双方共有'], answer: 1, analysis: '我国专利制度采用先申请原则，专利权授予最先申请的人。' }),
+  m({ id: 'me-06-14', chapterId: 'ch06', sectionId: 'ch06-1', stem: '著作权中，保护期不受限制的权利是（　）。', options: ['发表权', '复制权', '署名权', '发行权'], answer: 2, analysis: '署名权、修改权、保护作品完整权永久受保护；发表权与财产权有期限。' }),
+  m({ id: 'me-06-15', chapterId: 'ch06', sectionId: 'ch06-2', stem: '标准化的主要作用不包括（　）。', options: ['提高沟通效率', '保障产品质量', '促进技术兼容', '直接提升开发人员的个人技术水平'], answer: 3, analysis: '标准化统一流程与规范，可提升协作效率与质量，但不能直接提升个人技术能力。' }),
+  m({ id: 'me-06-16', chapterId: 'ch06', sectionId: 'ch06-2', stem: '地方标准的代号通常以（　）开头。', options: ['GB', 'DB', 'Q/', 'ISO'], answer: 1, analysis: '地方标准以 DB 加行政区划代码开头，如 DB11（北京）；企业标准以 Q/ 开头。' }),
+
+  /* ---------------- 第 7 章 程序设计语言与编译 ---------------- */
+  m({ id: 'me-07-01', chapterId: 'ch07', sectionId: 'ch07-2', stem: '编译过程正确的阶段顺序是（　）。', options: ['词法→语法→语义→中间代码→优化→目标代码', '语法→词法→语义→优化→目标代码', '词法→语义→语法→目标代码', '语义→词法→语法→中间代码'], answer: 0, analysis: '编译分为词法分析、语法分析、语义分析、中间代码生成、代码优化、目标代码生成六个阶段。' }),
+  m({ id: 'me-07-02', chapterId: 'ch07', sectionId: 'ch07-2', stem: '符号表的主要作用是（　）。', options: ['存储目标代码', '记录源程序中各符号的属性信息', '进行代码优化', '分配寄存器'], answer: 1, analysis: '符号表记录标识符的类型、作用域、地址等属性，供语义检查与代码生成使用。' }),
+  m({ id: 'me-07-03', chapterId: 'ch07', sectionId: 'ch07-2', stem: '中间代码的主要优点是（　）。', options: ['可直接在机器上运行', '与具体机器无关，便于优化与移植', '比目标代码执行更快', '不需要语义分析'], answer: 1, analysis: '中间代码与目标机器无关，便于进行与机器无关的优化，也使编译器更易移植到新平台。' }),
+  m({ id: 'me-07-04', chapterId: 'ch07', sectionId: 'ch07-1', stem: '解释程序与编译程序的根本区别是（　）。', options: ['是否生成目标代码', '是否进行词法分析', '是否检查语法', '是否需要源程序'], answer: 0, analysis: '编译程序生成独立的目标代码；解释程序逐句翻译并立即执行，不生成目标代码。' }),
+  m({ id: 'me-07-05', chapterId: 'ch07', sectionId: 'ch07-3', stem: '上下文无关文法属于乔姆斯基文法分类中的（　）。', options: ['0 型', '1 型', '2 型', '3 型'], answer: 2, analysis: '2 型文法即上下文无关文法，产生式左部为单个非终结符；3 型为正规文法。' }),
+  m({ id: 'me-07-06', chapterId: 'ch07', sectionId: 'ch07-3', stem: '正规式 a(a|b)* 表示的字符串集合是（　）。', options: ['以 a 开头的 a、b 串', '以 a 结尾的 a、b 串', '仅含 a 的串', '长度为偶数的串'], answer: 0, analysis: 'a 后接任意长度的 a、b 串（含空串），因此是所有以 a 开头的 a、b 串。' }),
+  m({ id: 'me-07-07', chapterId: 'ch07', sectionId: 'ch07-3', stem: '有限自动机中，能被识别的字符串必须（　）。', options: ['从初态出发最终到达终态', '经过所有状态', '至少经过一个终态两次', '停留在初态'], answer: 0, analysis: '从初态出发，按输入串逐字符转移，若最终停在终态则该串被接受（识别）。' }),
+  m({ id: 'me-07-08', chapterId: 'ch07', sectionId: 'ch07-3', stem: '若一个文法存在某个句子对应两棵不同的语法树，则该文法（　）。', options: ['是二义的', '是正规的', '不含递归', '无法编译'], answer: 0, analysis: '同一句子有两棵不同语法树即存在二义性，需通过改造文法或规定优先级消除。' }),
+  m({ id: 'me-07-09', chapterId: 'ch07', sectionId: 'ch07-4', stem: '表达式 a*(b+c) 的后缀式为（　）。', options: ['abc+*', 'ab+c*', 'a*bc+', 'ab*c+'], answer: 0, analysis: '先算 b+c 得 bc+，再与 a 相乘得 abc+*。' }),
+  m({ id: 'me-07-10', chapterId: 'ch07', sectionId: 'ch07-4', stem: '后缀式 ab+cd−* 对应的中缀表达式是（　）。', options: ['(a+b)*(c−d)', 'a+b*c−d', 'a+(b*c)−d', '(a+b*c)−d'], answer: 0, analysis: 'ab+ 得 (a+b)，cd− 得 (c−d)，两者相乘即 (a+b)*(c−d)。' }),
+  m({ id: 'me-07-11', chapterId: 'ch07', sectionId: 'ch07-4', stem: '函数 void f(int x){x=10;} 以值传递方式调用 f(a)，a 原值为 5，调用后 a 的值为（　）。', options: ['5', '10', '15', '不确定'], answer: 0, analysis: '值传递把实参值复制给形参，形参修改不影响实参，故 a 仍为 5。' }),
+  m({ id: 'me-07-12', chapterId: 'ch07', sectionId: 'ch07-4', stem: '若上题改为引用传递，调用后 a 的值为（　）。', options: ['5', '10', '15', '不确定'], answer: 1, analysis: '引用传递下形参是实参的别名，x=10 即修改 a，故 a 变为 10。' }),
+  m({ id: 'me-07-13', chapterId: 'ch07', sectionId: 'ch07-4', stem: 'C 语言中变量的可见性由代码的静态位置决定，这属于（　）。', options: ['动态作用域', '静态作用域', '传名调用', '宏展开'], answer: 1, analysis: '静态（词法）作用域在编译期即可确定变量可见性；动态作用域由运行时调用链决定。' }),
+  m({ id: 'me-07-14', chapterId: 'ch07', sectionId: 'ch07-1', stem: '汇编语言属于（　）。', options: ['机器语言', '低级语言', '高级语言', '自然语言'], answer: 1, analysis: '汇编语言是符号化的机器语言，与硬件密切相关，属于低级程序设计语言，需汇编程序翻译。' }),
+  m({ id: 'me-07-15', chapterId: 'ch07', sectionId: 'ch07-1', stem: '下列语言中，属于函数式程序设计语言的是（　）。', options: ['COBOL', 'LISP', 'Prolog', 'Fortran'], answer: 1, analysis: 'LISP 是函数式语言；Prolog 是逻辑式语言；COBOL 面向商业数据处理；Fortran 面向科学计算。' }),
+  m({ id: 'me-07-16', chapterId: 'ch07', sectionId: 'ch07-2', stem: '词法分析阶段的主要输入是（　）。', options: ['语法树', '源程序字符流', '中间代码', '目标代码'], answer: 1, analysis: '词法分析扫描源程序字符流，按词法规则识别出记号（token）序列。' }),
+
+  /* ---------------- 第 8 章 数据结构与算法 ---------------- */
+  m({ id: 'me-08-01', chapterId: 'ch08', sectionId: 'ch08-2', stem: '在长度为 n 的顺序表第 i 个位置插入元素，平均需要移动（　）个元素。', options: ['n', 'n/2', 'n−i', '1'], answer: 1, analysis: '等概率插入时平均移动次数为 n/2，时间复杂度 O(n)。' }),
+  m({ id: 'me-08-02', chapterId: 'ch08', sectionId: 'ch08-2', stem: '在单链表中，已知指针 p 指向某结点，要在 p 之后插入新结点 s，应执行（　）。', options: ['s->next=p; p->next=s;', 's->next=p->next; p->next=s;', 'p->next=s; s->next=p;', 'p=s->next;'], answer: 1, analysis: '先让新结点指向 p 的后继，再让 p 指向新结点，顺序不能颠倒，否则丢失后继链。' }),
+  m({ id: 'me-08-03', chapterId: 'ch08', sectionId: 'ch08-2', stem: '下列应用中，最适合使用栈的是（　）。', options: ['任务排队', '括号匹配检查', '按优先级调度', '广度优先搜索'], answer: 1, analysis: '括号匹配需要后进先出地配对，是栈的典型应用；广度优先搜索用队列。' }),
+  m({ id: 'me-08-04', chapterId: 'ch08', sectionId: 'ch08-2', stem: '循环队列中队满的条件是（　）。', options: ['front=rear', '(rear+1) mod m=front', 'rear=m', 'front=0'], answer: 1, analysis: '循环队列牺牲一个单元区分空满：队空 front=rear，队满 (rear+1) mod m = front。' }),
+  m({ id: 'me-08-05', chapterId: 'ch08', sectionId: 'ch08-3', stem: '一棵二叉树有 15 个度为 2 的结点，则叶子结点数为（　）。', options: ['14', '15', '16', '17'], answer: 2, analysis: 'n₀ = n₂ + 1 = 15 + 1 = 16。' }),
+  m({ id: 'me-08-06', chapterId: 'ch08', sectionId: 'ch08-3', stem: '完全二叉树中编号为 7 的结点，其左孩子编号为（　）。', options: ['13', '14', '15', '8'], answer: 1, analysis: '完全二叉树中结点 i 的左孩子为 2i，故 7 的左孩子为 14（右孩子 15，父结点 3）。' }),
+  m({ id: 'me-08-07', chapterId: 'ch08', sectionId: 'ch08-3', stem: '某二叉树中序序列为 DBEAFC，后序序列为 DEBFCA，则其先序序列为（　）。', options: ['ABDECF', 'ABDEFC', 'ADBECF', 'ABEDCF'], answer: 0, analysis: '后序末位 A 为根；中序中 A 左侧 DBE 为左子树、右侧 FC 为右子树，左子树后序 DEB → 根 B、左 D 右 E；右子树后序 FC → 根 C、左 F。先序为 A B D E C F。' }),
+  m({ id: 'me-08-08', chapterId: 'ch08', sectionId: 'ch08-3', stem: 'n 个叶子的哈夫曼树共有（　）个结点。', options: ['n', '2n−1', '2n', 'n²'], answer: 1, analysis: '哈夫曼树没有度为 1 的结点，由 n₀=n₂+1 得 n₂=n−1，总结点 = n + (n−1) = 2n−1。' }),
+  m({ id: 'me-08-09', chapterId: 'ch08', sectionId: 'ch08-3', stem: '二叉排序树的中序遍历结果是（　）。', options: ['无序的', '递增有序的', '递减有序的', '与插入顺序相同'], answer: 1, analysis: 'BST 满足左子树 < 根 < 右子树，因此中序遍历得到递增序列。' }),
+  m({ id: 'me-08-10', chapterId: 'ch08', sectionId: 'ch08-3', stem: '平衡二叉树（AVL）中任一结点的平衡因子绝对值不超过（　）。', options: ['0', '1', '2', 'n'], answer: 1, analysis: 'AVL 树要求每个结点左右子树高度差（平衡因子）的绝对值 ≤ 1，插入后通过旋转调整。' }),
+  m({ id: 'me-08-11', chapterId: 'ch08', sectionId: 'ch08-4', stem: '无向图所有顶点度数之和等于边数的（　）倍。', options: ['1', '2', 'n', 'n−1'], answer: 1, analysis: '每条边对两个端点各贡献 1 度，故 Σdeg(v) = 2e。' }),
+  m({ id: 'me-08-12', chapterId: 'ch08', sectionId: 'ch08-4', stem: '含 100 个顶点的图采用邻接矩阵存储，需要的存储单元数为（　）。', options: ['100', '200', '10000', '1000'], answer: 2, analysis: '邻接矩阵为 n×n，空间 O(n²)，100×100 = 10000 个单元，与边数无关。' }),
+  m({ id: 'me-08-13', chapterId: 'ch08', sectionId: 'ch08-4', stem: '深度优先遍历通常借助（　）实现。', options: ['队列', '栈', '哈希表', '堆'], answer: 1, analysis: 'DFS 沿路径深入再回溯，使用栈（递归）实现；BFS 使用队列。' }),
+  m({ id: 'me-08-14', chapterId: 'ch08', sectionId: 'ch08-4', stem: '求稀疏图的最小生成树，更适合采用（　）。', options: ['Prim 算法', 'Kruskal 算法', 'Dijkstra 算法', 'Floyd 算法'], answer: 1, analysis: 'Kruskal 复杂度 O(e log e)，与边数相关，适合稀疏图；Prim 为 O(n²)，适合稠密图。' }),
+  m({ id: 'me-08-15', chapterId: 'ch08', sectionId: 'ch08-4', stem: 'Dijkstra 算法不能处理（　）的图。', options: ['有向图', '无向图', '含负权边的图', '稠密图'], answer: 2, analysis: 'Dijkstra 基于贪心，一旦确定最短路径便不再更新，含负权边时该假设不成立。' }),
+  m({ id: 'me-08-16', chapterId: 'ch08', sectionId: 'ch08-4', stem: '对有向图进行拓扑排序，其前提是该图（　）。', options: ['连通', '无环', '有权', '为完全图'], answer: 1, analysis: '拓扑排序只适用于有向无环图（DAG），若存在环则无法得到完整拓扑序列。' }),
+  m({ id: 'me-08-17', chapterId: 'ch08', sectionId: 'ch08-5', stem: '对长度为 1000 的有序表折半查找，最多比较次数为（　）。', options: ['9', '10', '11', '1000'], answer: 1, analysis: '⌊log₂1000⌋ + 1 = 9 + 1 = 10（2⁹=512 < 1000 ≤ 2¹⁰）。' }),
+  m({ id: 'me-08-18', chapterId: 'ch08', sectionId: 'ch08-5', stem: '哈希表中采用链地址法解决冲突的优点是（　）。', options: ['不会产生堆积，删除方便', '不需要额外的指针空间', '查找时间恒为 O(1)', '装填因子必须小于 1'], answer: 0, analysis: '链地址法把同义词挂成链表，不产生开放定址的堆积现象，删除也方便；但需额外指针空间。' }),
+  m({ id: 'me-08-19', chapterId: 'ch08', sectionId: 'ch08-6', stem: '快速排序在（　）情况下退化为 O(n²)。', options: ['数据随机', '数据基本有序', '数据量很小', '数据全为负数'], answer: 1, analysis: '数据基本有序或逆序时，每次划分极不平衡，递归深度接近 n，退化为 O(n²)。' }),
+  m({ id: 'me-08-20', chapterId: 'ch08', sectionId: 'ch08-6', stem: '下列排序算法中，属于稳定排序的是（　）。', options: ['希尔排序', '快速排序', '归并排序', '堆排序'], answer: 2, analysis: '稳定排序有插入、冒泡、归并、基数排序；希尔、快排、选择、堆排序均不稳定。' })
+]
+
+export default mockE

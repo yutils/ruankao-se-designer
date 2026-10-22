@@ -1,0 +1,47 @@
+{
+  "name": "ruankao-se-designer",
+  "version": "1.0.0",
+  "private": false,
+  "license": "MIT",
+  "type": "module",
+  "description": "软考中级·软件设计师 考点精讲与模拟考试系统",
+  "homepage": "https://github.com/yutils/ruankao-se-designer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yutils/ruankao-se-designer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yutils/ruankao-se-designer/issues"
+  },
+  "keywords": [
+    "软考",
+    "软件设计师",
+    "题库",
+    "考试",
+    "vue3",
+    "vite"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "build:single": "vite build --config vite.single.config.js && node scripts/inline.mjs",
+    "e2e": "node scripts/e2e-full.mjs"
+  },
+  "dependencies": {
+    "katex": "^0.16.11",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/test-utils": "^2.4.6",
+    "happy-dom": "^15.11.7",
+    "playwright-core": "^1.64.1",
+    "vite": "^6.0.7",
+    "vitest": "^2.1.8"
+  }
+}
