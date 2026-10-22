@@ -1,43 +1,63 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+# 构建 Vue 项目并部署到 GitHub Pages
+# 注意：dist/ 在 .gitignore 中，仓库里没有构建产物，必须先 npm ci && npm run build
+name: Build and Deploy to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # 默认分支推送时自动部署（main / master 都监听，避免默认分支名不一致导致不触发）
   push:
-    branches: ["master"]
+    branches: ["main", "master"]
 
-  # Allows you to run this workflow manually from the Actions tab
+  # 允许在 Actions 页面手动点击运行
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# 部署到 Pages 所需的权限
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# 同时只允许一个部署，排队中的不会被取消
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      # 用 package-lock.json 精确安装，比 npm install 更可复现
+      - name: Install dependencies
+        run: npm ci
+
+      # 构建前跑一遍测试，挂了就不部署
+      - name: Run tests
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      # base 为 './' + Hash 路由，产物可直接放在任意子路径（/<repo>/）下运行
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
   deploy:
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5

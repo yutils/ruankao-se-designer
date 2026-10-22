@@ -39,6 +39,15 @@ npm run preview    # 预览构建产物
 
 > 路由使用 Hash 模式，`dist/` 可直接放到任意静态服务器（Nginx、GitHub Pages、对象存储）的任意子目录下运行。
 
+### 部署到 GitHub Pages
+
+仓库已内置 Workflow（`.github/workflows/static.yml`）：推送到默认分支即自动
+`npm ci` → `npm run test` → `npm run build` → 部署 `dist/`（**不是**直接上传源码目录，
+因为 `dist/` 被 gitignore，仓库里没有构建产物）。
+
+在仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions** 即可，
+首次部署完成后访问 `https://<用户名>.github.io/ruankao-se-designer/`。
+
 ### 免安装单文件版
 
 ```bash
